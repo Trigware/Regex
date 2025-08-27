@@ -19,11 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="Regex.h" />
+    <ClInclude Include="RegexError.h" />
+    <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="REGEX Parser.cpp" />
+    <ClCompile Include="HelperFunctions.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Regex.cpp" />
+    <ClCompile Include="RegexError.cpp" />
+    <ClCompile Include="Token.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

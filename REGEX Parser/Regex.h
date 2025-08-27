@@ -1,29 +1,7 @@
 #pragma once
 #include <string>
-#include <optional>
-#include <variant>
-#include <vector>
-#include <iostream>
-
-enum class Identifier {
-	CharacterSequence,
-	Alteration,
-	Wildcard,
-	LeftParathesis,
-	RightParethesis
-};
-
-using DataType = std::optional<std::variant<std::string>>;
-
-class Token {
-public:
-	Token(Identifier identifer, const DataType& data = std::nullopt);
-private:
-	Identifier identifier;
-	DataType data;
-	std::string IdentifierAsString();
-	friend std::ostream& operator<<(std::ostream& os, const Token& token);
-};
+#include "Token.h"
+#include "RegexError.h"
 
 class Regex {
 public:
@@ -31,8 +9,21 @@ public:
 	void PrintTokens();
 private:
 	int currentIndex;
+	char curCh;
 	std::string regex;
+	const int unicodeEscapeDigits = 4;
+
 	std::vector<Token> tokens;
+	std::wstring accumilatedStr;
+	bool insideEscapeSequence;
+	bool insideUnicodeEscape;
+	int remainingUnicodeDigits;
+	std::string unicodeStr;
+
 	void ParseCharacter();
 	void AddToken(Identifier identifier, const DataType& data = std::nullopt);
+	void EndCharSequence();
+	void EndSequenceAndAddToken(Identifier identifier, const DataType& data = std::nullopt);
+	void HandleEscapeSequence();
+	void HandleUnicodeEscapeCharacter();
 };
