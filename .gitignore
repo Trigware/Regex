@@ -1,41 +1,19 @@
-# Visual Studio workspace and temporary files
+# Visual Studio
 .vs/
 *.user
 *.suo
-*.userosscache
-*.sdf
-*.cachefile
 *.VC.db
 *.VC.opendb
 
-# Build results
+# Build artifacts
 [Bb]in/
 [Oo]bj/
 [Dd]ebug*/
 [Rr]elease*/
 x64/
 x86/
-build/
-out/
-*.ilk
-*.log
-*.pch
+*.exe
 *.pdb
-*.idb
-*.exp
 *.obj
 *.lib
 *.dll
-*.exe
-
-# Backup and temporary files
-*.bak
-*.tmp
-*.swp
-
-# System files
-*.DS_Store
-Thumbs.db
-
-# Visual Studio Code (optional, if using VS Code)
-.vscode/

@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="REGEX Parser.cpp">
+    <ClCompile Include="Regex.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
-    <ClCompile Include="Regex.cpp">
+    <ClCompile Include="REGEX Parser.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
   </ItemGroup>
