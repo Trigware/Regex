@@ -1,5 +1,8 @@
 #pragma once
 #include <exception>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 enum class RegexErrorType {
 	InvalidEscape,
@@ -10,9 +13,11 @@ enum class RegexErrorType {
 
 class RegexError : public std::exception {
 public:
-	RegexError(const RegexErrorType& error);
-	RegexErrorType code() const { return regexError; }
+	RegexError(bool error);
+	static std::vector<RegexErrorType> errorList;
+	std::vector<RegexErrorType> code() const {
+		return std::vector<RegexErrorType>(errorList);
+	}
 	const char* what() const noexcept override;
-private:
-	RegexErrorType regexError;
+	static std::string GetErrorMessage(RegexErrorType error);
 };

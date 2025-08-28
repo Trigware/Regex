@@ -1,12 +1,23 @@
 #include "RegexError.h"
 
-RegexError::RegexError(const RegexErrorType& error) {
-	regexError = error;
+std::vector<RegexErrorType> RegexError::errorList = {};
+
+RegexError::RegexError(bool error) {
 	throw std::exception(what());
 }
 
 const char* RegexError::what() const noexcept {
-	switch (regexError) {
+	int amountOfErrors = errorList.size();
+	if (amountOfErrors == 0) return "";
+	static std::string result = "Errors (" + std::to_string(amountOfErrors) + "): ";
+	for (RegexErrorType error : errorList) {
+		result += GetErrorMessage(error) + "\n";
+	}
+	return result.c_str();
+}
+
+std::string RegexError::GetErrorMessage(RegexErrorType error) {
+	switch (error) {
 		case RegexErrorType::InvalidEscape: return "Encountered an invalid escape sequence!";
 		case RegexErrorType::EscapeAtEnd: return "Encountered trailing backslash at the end of the regex!";
 		case RegexErrorType::UnicodeEscapeTooShort: return "Unicode escape ended prematurely!";

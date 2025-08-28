@@ -8,8 +8,9 @@ Regex::Regex(std::string regularExpression) {
 		ParseCharacter();
 	}
 	EndCharSequence();
-	if (insideEscapeSequence) RegexError err(RegexErrorType::EscapeAtEnd);
-	if (insideUnicodeEscape) RegexError err(RegexErrorType::UnicodeEscapeTooShort);
+	if (insideEscapeSequence) AddError(RegexErrorType::EscapeAtEnd);
+	if (insideUnicodeEscape) AddError(RegexErrorType::UnicodeEscapeTooShort);
+	ThrowIfErrors();
 }
 
 void Regex::AddToken(Identifier identifier, const DataType& data) {
@@ -76,7 +77,7 @@ void Regex::HandleEscapeSequence() {
 			unicodeStr = "";
 			return;
 
-		default: RegexError err(RegexErrorType::InvalidEscape);
+		default: AddError(RegexErrorType::InvalidEscape);
 	}
 }
 
@@ -89,6 +90,15 @@ void Regex::HandleUnicodeEscapeCharacter() {
 		int unicodeValue = Helpers::ConvertFromHex(unicodeStr);
 		accumilatedStr += static_cast<wchar_t>(unicodeValue);
 	} catch (...) {
-		RegexError err(RegexErrorType::UnicodeNumberInvalid);
+		AddError(RegexErrorType::UnicodeNumberInvalid);
 	}
+}
+
+void Regex::AddError(RegexErrorType error) {
+	RegexError::errorList.push_back(error);
+}
+
+void Regex::ThrowIfErrors() {
+	if (RegexError::errorList.size() == 0) return;
+	RegexError err(true);
 }

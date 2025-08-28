@@ -26,4 +26,6 @@ private:
 	void EndSequenceAndAddToken(Identifier identifier, const DataType& data = std::nullopt);
 	void HandleEscapeSequence();
 	void HandleUnicodeEscapeCharacter();
+	void AddError(RegexErrorType error);
+	void ThrowIfErrors();
 };

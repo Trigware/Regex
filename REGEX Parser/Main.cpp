@@ -7,7 +7,7 @@ const std::string red = "\033[31m", reset = "\033[0m";
 
 int main() {
 	try {
-		std::string exampleRegex = R"(\uXXXX)";
+		std::string exampleRegex = R"(\c\)";
 		Regex regexExample(exampleRegex);
 		regexExample.PrintTokens();
 
@@ -17,6 +17,6 @@ int main() {
 		regexFromUser.PrintTokens();
 	}
 	catch (const std::exception& e) {
-		std::cout << red << "Error: " << e.what() << reset << std::endl;
+		std::cout << red << e.what() << reset << std::endl;
 	}
 }
