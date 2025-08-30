@@ -11,6 +11,7 @@ Regex::Regex(std::string regularExpression) {
 	if (insideEscapeSequence) AddError(RegexErrorType::EscapeAtEnd);
 	if (insideUnicodeEscape) AddError(RegexErrorType::UnicodeEscapeTooShort);
 	ThrowIfErrors();
+	ConvertTokensToAST();
 }
 
 void Regex::AddToken(Identifier identifier, const DataType& data) {
@@ -22,6 +23,10 @@ void Regex::PrintTokens() {
 		std::wcout << token.GetTokenAsString() << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+void Regex::PrintAST() {
+	ASTree.PrintTree();
 }
 
 void Regex::EndCharSequence() {

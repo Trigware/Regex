@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AST.h" />
     <ClInclude Include="HelperFunctions.h" />
     <ClInclude Include="Regex.h" />
     <ClInclude Include="RegexError.h" />
     <ClInclude Include="Token.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AST.cpp" />
     <ClCompile Include="HelperFunctions.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Regex.cpp" />

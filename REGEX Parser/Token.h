@@ -5,11 +5,13 @@
 #include <iostream>
 
 enum class Identifier {
+	ASTRoot,
 	CharacterSequence,
 	Alteration,
 	Wildcard,
 	LeftParathesis,
-	RightParethesis
+	RightParethesis,
+	TokenGroup
 };
 
 using StringType = std::wstring;

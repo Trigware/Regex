@@ -2,19 +2,17 @@
 #include <regex>
 #include "Regex.h"
 #include "HelperFunctions.h"
+#include <io.h>
+#include <fcntl.h>
 
 const std::string red = "\033[31m", reset = "\033[0m";
 
 int main() {
+	_setmode(_fileno(stdout), _O_U16TEXT); // Sets output to support UTF-16
 	try {
-		std::string exampleRegex = R"(\c\)";
+		std::string exampleRegex = R"(a|b|c|d)";
 		Regex regexExample(exampleRegex);
-		regexExample.PrintTokens();
-
-		std::cout << "Give a regular expression: " << std::endl;
-		std::string regexInput; std::cin >> regexInput;
-		Regex regexFromUser(regexInput);
-		regexFromUser.PrintTokens();
+		regexExample.PrintAST();
 	}
 	catch (const std::exception& e) {
 		std::cout << red << e.what() << reset << std::endl;

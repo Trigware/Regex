@@ -12,6 +12,8 @@ StringType Token::IdentifierAsString() {
 		case Identifier::Wildcard: return L"Wildcard";
 		case Identifier::LeftParathesis: return L"Left Parenthesis";
 		case Identifier::RightParethesis: return L"Right Parenthesis";
+		case Identifier::ASTRoot: return L"AST Root";
+		case Identifier::TokenGroup: return L"Token Group";
 	}
 	return L"Unknown";
 }

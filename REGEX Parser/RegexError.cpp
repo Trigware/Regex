@@ -15,11 +15,10 @@ const char* RegexError::what() const noexcept {
 	}
 	return result.c_str();
 }
-
-std::string RegexError::GetErrorMessage(RegexErrorType error) {
+ std::string RegexError::GetErrorMessage(RegexErrorType error) {
 	switch (error) {
 		case RegexErrorType::InvalidEscape: return "Encountered an invalid escape sequence!";
-		case RegexErrorType::EscapeAtEnd: return "Encountered trailing backslash at the end of the regex!";
+		case RegexErrorType::EscapeAtEnd: return "Encountered trailing backslashs at the end of the regex!";
 		case RegexErrorType::UnicodeEscapeTooShort: return "Unicode escape ended prematurely!";
 		case RegexErrorType::UnicodeNumberInvalid: return "Number in unicode escape is invalid!";
 	}

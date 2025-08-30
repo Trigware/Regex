@@ -2,11 +2,13 @@
 #include <string>
 #include "Token.h"
 #include "RegexError.h"
+#include "AST.h"
 
 class Regex {
 public:
 	Regex(std::string regularExpression);
 	void PrintTokens();
+	void PrintAST();
 private:
 	int currentIndex;
 	char curCh;
@@ -14,6 +16,8 @@ private:
 	const int unicodeEscapeDigits = 4;
 
 	std::vector<Token> tokens;
+
+	AST ASTree;
 	std::wstring accumilatedStr;
 	bool insideEscapeSequence;
 	bool insideUnicodeEscape;
@@ -28,4 +32,5 @@ private:
 	void HandleUnicodeEscapeCharacter();
 	void AddError(RegexErrorType error);
 	void ThrowIfErrors();
+	void ConvertTokensToAST();
 };
