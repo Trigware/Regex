@@ -11,7 +11,10 @@ enum class Identifier {
 	Wildcard,
 	LeftParathesis,
 	RightParethesis,
-	TokenGroup
+	Concatenation,
+	ConcatStart,
+	ConcatEnd,
+	None
 };
 
 using StringType = std::wstring;
@@ -23,6 +26,7 @@ public:
 	Token(Identifier identifer, const DataType& data = std::nullopt);
 	StringType IdentifierAsString();
 	StringType GetTokenAsString();
+	Identifier GetIdentifier() const { return identifier; }
 private:
 	Identifier identifier;
 	DataType data;

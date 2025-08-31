@@ -49,9 +49,10 @@ void ASTNode::PrintNode(NodePosition positionInChildList, std::wstring prefix) {
 	}
 }
 
-void Regex::ConvertTokensToAST() {
-	ASTree.Reset();
-	for (Token token : tokens) {
-		ASTree.AddToRoot(token);
+void ASTNode::MoveChildrenUp() {
+	if (parent == nullptr) return;
+	for (auto& child : children) {
+		child->parent = parent;
+		parent->children.push_back(std::move(child));
 	}
 }

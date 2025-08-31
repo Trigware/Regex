@@ -19,6 +19,8 @@ public:
 	ASTNode* AddChild(const Token& t);
 	ASTNode* AddSibling(const Token& t) { return parent->AddChild(t); }
 	void PrintNode(NodePosition parentNodePosition, std::wstring prefix = L"");
+	int GetChildCount() const { return children.size(); }
+	void MoveChildrenUp();
 };
 
 class AST {

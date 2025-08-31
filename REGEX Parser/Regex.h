@@ -18,11 +18,14 @@ private:
 	std::vector<Token> tokens;
 
 	AST ASTree;
+	std::vector<Token> GroupedTokens;
 	std::wstring accumilatedStr;
 	bool insideEscapeSequence;
 	bool insideUnicodeEscape;
 	int remainingUnicodeDigits;
 	std::string unicodeStr;
+	Identifier previousIdentifier;
+	bool insideOfConcatenationGroup;
 
 	void ParseCharacter();
 	void AddToken(Identifier identifier, const DataType& data = std::nullopt);
@@ -32,5 +35,11 @@ private:
 	void HandleUnicodeEscapeCharacter();
 	void AddError(RegexErrorType error);
 	void ThrowIfErrors();
+
 	void ConvertTokensToAST();
+	void ParseToken(Token token);
+	void EndGroupedTokens();
+	void StartConcatenationGroup();
+	void EndConcatenationGroup();
+	void ParseGroupedToken(ASTNode*& groupParent, Token token);
 };
